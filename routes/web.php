@@ -31,5 +31,7 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 
+//等同创建了show,update,edit三个路由
+Route::resource('users', 'UsersController', ['only' => ['show', 'update', 'edit']]);
 
 
