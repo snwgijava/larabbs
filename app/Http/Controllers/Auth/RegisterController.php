@@ -51,6 +51,10 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'captcha' => 'required|captcha',//这里是新添加的验证码校验
+        ],[
+            'captcha.required' => '验证码不能为空',       //第三个参数是自定义错误提示
+            'captcha.captcha' => '请输入正确的验证码',
         ]);
     }
 
