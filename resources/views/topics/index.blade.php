@@ -27,6 +27,8 @@
                     @include('topics._topic_list', ['topics' => $topics])
                     {{-- 分页 --}}
                     {!! $topics->render() !!}
+                    {{--{!! $topics->appends(['order'=>$order])->render() !!}--}}
+
                 </div>
             </div>
         </div>
