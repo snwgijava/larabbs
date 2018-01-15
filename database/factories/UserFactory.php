@@ -1,6 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
+use Carbon\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,10 +15,17 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(App\Models\User::class, function (Faker $faker) {
+    static $password;
+    //Carbon 是 PHP DateTime 的一个简单扩展，这里我们使用 now() 和 toDateTimeString() 来创建格式如 2017-10-13 18:42:40 的时间戳。
+    $now = Carbon::now()->toDateTimeString();
+
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
+        'password' => $password ?: $password = bcrypt('password'),
         'remember_token' => str_random(10),
+        'introduction' => $faker->sentence(),   //sentence() 是 faker 提供的 API ，随机生成『小段落』文本
+        'created_at' => $now,
+        'updated_at' => $now,
     ];
 });
