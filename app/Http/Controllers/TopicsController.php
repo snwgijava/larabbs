@@ -27,6 +27,7 @@ class TopicsController extends Controller
 
     public function show(Topic $topic)
     {
+
         return view('topics.show', compact('topic'));
     }
 
