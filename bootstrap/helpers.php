@@ -6,3 +6,9 @@ use Illuminate\Support\Facades\Route;
 function route_class(){
     return str_replace('.','-',Route::currentRouteName());
 }
+
+function make_excerpt($value,$length=200){
+    //将换行符或回车符替换成空格
+    $excerpt = trim(preg_replace('/\r\n|\n+/',' ',strip_tags($value)));
+    return str_limit($excerpt,$length);
+}
