@@ -6,6 +6,11 @@ class Topic extends Model
 {
     protected $fillable = ['title', 'body', 'category_id', 'excerpt', 'slug'];
 
+    //一个帖子下有多条回复
+    public function replies(){
+        return $this->hasMany(Reply::class);
+    }
+
     //一个帖子有一个分类
     public function category(){
         return $this->belongsTo(Category::class);
@@ -45,4 +50,6 @@ class Topic extends Model
     {
         return route('topics.show', array_merge([$this->id, $this->slug], $params));
     }
+
+
 }
