@@ -13,8 +13,9 @@ class ReplyPolicy extends Policy
         return true;
     }
 
+    //回复的用户和帖子作者才有权限删除评论
     public function destroy(User $user, Reply $reply)
     {
-        return true;
+        return $user->isAuthorOf($reply) || $user->isAuthorOf($reply->topic);
     }
 }
